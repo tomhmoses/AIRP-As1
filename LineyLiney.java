@@ -32,7 +32,7 @@ public class LineyLiney
 
 		LCD.drawString("Press my button,", 0, 0);
 		LCD.drawString("turn me on ;)", 0, 1);
-		LCD.drawString("vJuan.3.30.9", 0, 2);
+		LCD.drawString("vJuan.3.31.9", 0, 2);
 
 		Keys buttons = BRICK.getKeys();
 		Button.LEDPattern(2);
@@ -233,7 +233,7 @@ public class LineyLiney
 		if (leftWasOnGreen && rightWasOnGreen)
 		{
 			//turn 180
-			pilot.rotate(180);
+			pilot.rotate(190);
 		}
 		else if (leftWasOnGreen)
 		{
@@ -283,7 +283,7 @@ public class LineyLiney
 		//stop when we have gone past the object, rotate 60 degrees
 		pilot.stop();
 		pilot.travel(15);
-		pilot.rotate(60);
+		pilot.rotate(90);
 		
 		//find the line and get back onto it turning in the correct direction
 		findLineFromLeft(pilot, LEFT_COLOR, RIGHT_COLOR);
@@ -293,6 +293,7 @@ public class LineyLiney
 	//is able to find a line from the left hand side of direction
 	private static void findLineFromLeft(MovePilot pilot, ColorSensor LEFT_COLOR, ColorSensor RIGHT_COLOR)
 	{
+		pilot.setLinearSpeed(3);
 		pilot.forward();
 		Boolean rightBeenOnBlack = false;
 		
@@ -322,7 +323,9 @@ public class LineyLiney
 		//while the right colour sensor is not on white, rotate until it is
 		while (!RIGHT_COLOR.onWhite())
 		{
-			pilot.rotate(2.5);
+			pilot.rotate(-2.5);
 		}
+		pilot.setLinearSpeed(5);
+		pilot.forward();
 	}
 }
